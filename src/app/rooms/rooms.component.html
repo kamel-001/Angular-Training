@@ -1,0 +1,19 @@
+<h1>Welcome to {{hotelName}}</h1>
+
+
+<div [hidden]="hideRooms">
+    number of rooms :
+    <p [ngStyle]="{'color': rooms.availableRooms ? 'steelblue' : 'red'}" [innerText]="numberOfRooms"></p>
+</div>
+<!-- A good way to check object in html if they are filled with data  -->
+<!-- {{rooms?.availableRooms ?? 'No rooms'}} -->
+<!-- {{roomList | json}} -->
+<div *ngIf="selectedRoom">
+    {{selectedRoom | json}}
+</div>
+<div *ngIf="rooms.availableRooms > 0">
+    <app-rooms-list [roomList]="roomList"
+    (selectedRoom)="selectRoom($event)"
+    ></app-rooms-list>
+</div>
+<button (click)="toggle()">toggle</button>
